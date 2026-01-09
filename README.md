@@ -13,4 +13,5 @@ The Hand Landmarker Model (hand_landmarker.py script) takes a .jpg image as inpu
 and annotates them. It uses bounding boxes to improve efficiency of this object detection model. 
 
 ## Sample of Hand Landmarker output with Letter "A" in ASL 
-![cdi](https://github.com/user-attachments/assets/2bb1a578-93c5-4b58-9643-4c83e765a734)
+![a](https://github.com/user-attachments/assets/355d829d-a087-4bfa-bbe4-8c9101d9a3ca)
+
