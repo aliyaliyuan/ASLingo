@@ -4,7 +4,7 @@ ASLingo is a ML model for ASL education and translation that I am developinging 
 ML model. The ultimate goal is to have a model that can translate ASL based on live-video capture and 
 can identify if the user is signing correctly or not. For the purposes of this prototype,
 I want the model to be able to translate and give feedback on a user's ability to sign the alphabet,
-100 common words in ASL, and 10 basic phrases. 
+100 common words in ASL, and 10 basic phrases. I recognize that ASL has more complex elements (facial expression, grammar, etc.), but I want to start simple. 
 
 ## Current Progress
 
