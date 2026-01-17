@@ -1,3 +1,4 @@
+#For jpg img only 
 #Ensure mediapipe is installed in Terminal 
 #pip install -q mediapipe
 
