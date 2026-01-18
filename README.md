@@ -20,7 +20,7 @@ Training files can be found at https://drive.google.com/drive/folders/1xhWV4fKXK
 I will be creating a robust training data set with 100 images per classification. I will also be expanding the model to train on all letters of the ASL alphabet. Then, I will move on to basic words. Then, I will need help from fluent ASL speakers/the Deaf community. 
 
 ## How To Run It
-First, run ALX_train.py. This will create a landmarks.csv, which extract features from the images in your training data. These features are then used to generate the predictive model. You will need to save the model. 
+First, run Train_mp_ALX.py. This will create a landmarks.csv, which extract features from the images in your training data. These features are then used to generate the predictive model. You will need to save the model. 
 
 Then, you will edit the livecapture.py script to point to the file path location of your model and run the script. Your camera will pop up and text that reads "Letter: " will appear and predict the letter you are trying to sign. Right now, the accuracy is quite poor due to overfitting of the model I discussed earlier. It seems the model did really well at learning "L", but often confuses "A" and "X". 
 
