@@ -1,10 +1,12 @@
 ## ASLingo
 
-ASLingo is a ML model for ASL education and translation that I am developinging using Google's MediaPipe 
-ML model. The ultimate goal is to have a model that can translate ASL based on live-video capture and 
+ASLingo is a ML model for ASL education that I am developinging using Google's MediaPipe 
+ML model. I am not fluent in ASL, but wanted to make a tool that made ASL education more accessible. The ultimate goal is to have a model that can translate ASL based on live-video capture and 
 can identify if the user is signing correctly or not. For the purposes of this prototype,
 I want the model to be able to translate and give feedback on a user's ability to sign the alphabet,
 100 common words in ASL, and 10 basic phrases. I recognize that ASL has more complex elements (facial expression, grammar, etc.), but I want to start simple. 
+
+To start with, I am training the model on data I create (images of the ASL alphabet) and simple word banks from Kaggle. Eventually, I want to train the model on a robust data set obtained of signs from fluent ASL speakers from the Deaf community for authenticity. 
 
 ## Current Progress
 
