@@ -16,9 +16,6 @@ I started with 3 letters (A, L, and X). For simplicity, I used a Random Forest C
 
 Training files can be found at https://drive.google.com/drive/folders/1xhWV4fKXKLFgCnSbBuy9rk7h4h2a4FyP?usp=drive_link 
 
-## Future Direction
-I will be creating a robust training data set with 100 images per classification. I will also be expanding the model to train on all letters of the ASL alphabet. Then, I will move on to basic words. Then, I will need help from fluent ASL speakers/the Deaf community. 
-
 ## How To Run It
 First, run Train_mp_ALX.py. This will create a landmarks.csv, which extract features from the images in your training data. These features are then used to generate the predictive model. You will need to save the model. 
 
@@ -30,3 +27,6 @@ Stay tuned for updates!
 ![a](https://github.com/user-attachments/assets/355d829d-a087-4bfa-bbe4-8c9101d9a3ca)
 
 This depicts the 21 landmarkers from MediaPipe that help to recognize hand gestures, which will help the model to learn how to detect signs. 
+
+## Future Direction
+I will be creating a robust training data set with 100 images per classification. I will also be expanding the model to train on all letters of the ASL alphabet. Then, I will move on to basic words. Then, I will need help from fluent ASL speakers/the Deaf community. 
