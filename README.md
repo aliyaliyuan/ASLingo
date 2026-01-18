@@ -10,6 +10,7 @@ For the purposes of this prototype, I want the model to be able to translate and
 To start with, I am training the model on data I create (images of the ASL alphabet) and simple word banks from Kaggle. Eventually, I want to train the model on a robust data set obtained of signs from fluent ASL speakers from the Deaf community for authenticity. 
 
 ## Current Progress
+![Prototype](https://github.com/user-attachments/assets/b0132854-ce1a-4449-afdf-4192f9b7f58e)
 
 I started with 3 letters (A, L, and X). For simplicity, I used a Random Forest Classifier on the three letters using images of me signing the letters and stock images of the letters. There are only about 20-30 images per letter, so overfitting is definitely occuring (which I will be fixing by creating more robust training data sets). 
 
@@ -17,9 +18,6 @@ I started with 3 letters (A, L, and X). For simplicity, I used a Random Forest C
 
 ## Sample of Hand Landmarker output with Letter "A" in ASL 
 ![a](https://github.com/user-attachments/assets/355d829d-a087-4bfa-bbe4-8c9101d9a3ca)
-
-## Current Progress of Live Letter Detection
-![Prototype](https://github.com/user-attachments/assets/b0132854-ce1a-4449-afdf-4192f9b7f58e)
 
 ## How To Run It
 First, run ALX_train.py. This will create a landmarks.csv, which extract features from the images in your training data. These features are then used to generate the predictive model. You will need to save the model. 
