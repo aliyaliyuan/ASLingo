@@ -1,6 +1,4 @@
-import cv2
 
-#img =  cv2.imread("/Users/aliyahaas/Desktop/VS_Code/ASLingo/a.jpg")
 
 #Getting sample data from you dataset
 import matplotlib.pyplot as plt
@@ -17,20 +15,6 @@ for i in os.listdir(IMAGES_PATH):
 print("Labels:")
 for i in labels:
     print(i)
-#Show images
-'''
-for label in labels:
-    label_dir = os.path.join(IMAGES_PATH, label)
-    example_filenames = os.listdir(label_dir)[:[NUM_EXAMPLES]]
-    fig, axs = plt.subplots(1, NUM_EXAMPLES, figsize=(10,2))
-    for i in range(NUM_EXAMPLES):
-        axs[i].imshow(plt.imread(os.path.join(label_dir, example_filenames[i])))
-        axs[i].get_xaxis().set_visible(False)
-        axs[i].get_yaxis().set_visible(False)
-    fig.suptitle(f'Showing {NUM_EXAMPLES} examples for {label}')
-
-plt.show()
-'''
 
 #Making a New Model
 #pip install -q mediapipe-model-maker
