@@ -1,6 +1,6 @@
 ## ASLingo
 
-ASLingo is a ML model for ASL education that I am developinging using Google's MediaPipe 
+ASL is one of the third most widely-used languages in the United States. However, many people from the hearing community do not know any ASL. ASLingo is a ML model for ASL education that I am developinging using Google's MediaPipe 
 ML model. I am not fluent in ASL, but wanted to make a tool that makes ASL education more accessible (and I'm learning ASL as I go).  The ultimate goal is to have a model that can translate ASL based on live-video capture and 
 can identify if the user is signing correctly or not. The feedback will give users more confidence and increase their chances of communicating with people actually fluent in ASL. 
 
