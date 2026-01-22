@@ -1,4 +1,6 @@
-## ASLingo
+
+![logo](https://github.com/user-attachments/assets/85b3dc07-c039-405c-9dda-17481a657ed5)
+
 
 ASL is the third most widely-used language in the United States. However, many people from the hearing community do not know any ASL. ASLingo is a ML model for ASL education that I am developinging using Google's MediaPipe 
 ML model. I am not fluent in ASL, but wanted to make a tool that makes ASL education more accessible (and I'm learning ASL as I go).  The ultimate goal is to have a model that can translate ASL based on live-video capture and 
