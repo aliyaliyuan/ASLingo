@@ -18,13 +18,16 @@ I started with 3 letters (A, L, and X). For simplicity, I used a Random Forest C
 
 Training files can be found at https://drive.google.com/drive/folders/1xhWV4fKXKLFgCnSbBuy9rk7h4h2a4FyP?usp=drive_link 
 
+A basic GUI that captures the live video feed from your device and displays the letter being recognized (A, L, X, or None). hello.py is the back-end python script that imports flask and the trained model to create end points for the HTML file to connect with. front_end.html captures the live video, sends frames to hello.py, which uses the model to make the predictions, then sends the information back. This is the simplest GUI it will be. Eventually, I want to incorporate users, lessons, and games. 
+
 ## How To Train the Model
 First, run Train_mp_ALX.py. This will create a landmarks.csv, which extract features from the images in your training data. These features are then used to generate the predictive model. You will need to save the model. 
 
 Then, you will edit the livecapture.py script to point to the file path location of your model and run the script. Your camera will pop up and text that reads "Letter: " will appear and predict the letter you are trying to sign. Right now, the accuracy is quite poor due to overfitting of the model I discussed earlier. It seems the model did really well at learning "L", but often confuses "A" and "X". 
 
 ## How to Run the GUI
-hello.py is the back-end python script that imports flask and the trained model to create end points for the HTML file to connect with. front_end.html captures the live video, sends frames to hello.py, which uses the model to make the predictions, then sends the information back. This is the simplest GUI it will be. Eventually, I want to incorporate users, lessons, and games. 
+
+Go to the directory that hello.py is located in. Run: "flask --app hello run" in the Terminal. For this to work, the front_end.html is located in the /templates directory, and the logo is in the /static direcotry. Both /static and /templates must be in the same directory as hello.py. 
 
 Stay tuned for updated!
 
