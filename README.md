@@ -12,21 +12,24 @@ For the purposes of this prototype, I want the model to be able to translate and
 To start with, I am training the model on data I create (images of the ASL alphabet from Stock photos and myself) and simple word banks from Kaggle. Eventually, I want to train the model on a robust data set obtained of signs from fluent ASL speakers from the Deaf community for authenticity. 
 
 ## Current Progress
-![Prototype](https://github.com/user-attachments/assets/b0132854-ce1a-4449-afdf-4192f9b7f58e)
+![GUI_1](https://github.com/user-attachments/assets/a9a559e2-7ea2-41bd-842d-26c3554506e2)
 
 I started with 3 letters (A, L, and X). For simplicity, I used a Random Forest Classifier on the three letters using images of me signing the letters and stock images of the letters. There are only about 20-30 images per letter, so overfitting is definitely occuring (which I will be fixing by creating more robust training data sets). 
 
 Training files can be found at https://drive.google.com/drive/folders/1xhWV4fKXKLFgCnSbBuy9rk7h4h2a4FyP?usp=drive_link 
 
-## How To Run It
+## How To Train the Model
 First, run Train_mp_ALX.py. This will create a landmarks.csv, which extract features from the images in your training data. These features are then used to generate the predictive model. You will need to save the model. 
 
 Then, you will edit the livecapture.py script to point to the file path location of your model and run the script. Your camera will pop up and text that reads "Letter: " will appear and predict the letter you are trying to sign. Right now, the accuracy is quite poor due to overfitting of the model I discussed earlier. It seems the model did really well at learning "L", but often confuses "A" and "X". 
 
-Stay tuned for updates!
+## How to Run the GUI
+hello.py is the back-end python script that imports flask and the trained model to create end points for the HTML file to connect with. front_end.html captures the live video, sends frames to hello.py, which uses the model to make the predictions, then sends the information back. This is the simplest GUI it will be. Eventually, I want to incorporate users, lessons, and games. 
 
-## Sample of Hand Landmarker output with Letter "A" in ASL 
-![a](https://github.com/user-attachments/assets/355d829d-a087-4bfa-bbe4-8c9101d9a3ca)
+Stay tuned for updated!
+
+## Sample of Hand Landmarker output with Letter "L" in ASL 
+![Prototype](https://github.com/user-attachments/assets/b0132854-ce1a-4449-afdf-4192f9b7f58e)
 
 This depicts the 21 landmarkers from MediaPipe that help to recognize hand gestures, which will help the model to learn how to detect signs. 
 
