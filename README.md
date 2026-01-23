@@ -29,7 +29,7 @@ Then, you will edit the livecapture.py script to point to the file path location
 
 Go to the directory that hello.py is located in. Run: "flask --app hello run" in the Terminal. For this to work, the front_end.html is located in the /templates directory, and the logo is in the /static direcotry. Both /static and /templates must be in the same directory as hello.py. 
 
-Stay tuned for updated!
+Stay tuned for updates!
 
 ## Sample of Hand Landmarker output with Letter "L" in ASL 
 ![Prototype](https://github.com/user-attachments/assets/b0132854-ce1a-4449-afdf-4192f9b7f58e)
