@@ -12,7 +12,15 @@ For the purposes of this prototype, I want the model to be able to translate and
 To start with, I am training the model on data I create (images of the ASL alphabet from Stock photos and myself) and simple word banks from Kaggle. Eventually, I want to train the model on a robust data set obtained of signs from fluent ASL speakers from the Deaf community for authenticity. 
 
 ## Current Progress
-![GUI_1](https://github.com/user-attachments/assets/a9a559e2-7ea2-41bd-842d-26c3554506e2)
+Log-in page: 
+
+![loginpage](https://github.com/user-attachments/assets/d1108fad-0c09-4990-8440-daac25565dfc)
+
+Live Capture Letter Detection Page: 
+
+![predictpage](https://github.com/user-attachments/assets/20bfeea2-54cd-49ea-8002-d1e5f3023cfa)
+
+
 
 I started with 3 letters (A, L, and X). For simplicity, I used a Random Forest Classifier on the three letters using images of me signing the letters and stock images of the letters. There are only about 20-30 images per letter, so overfitting is definitely occuring (which I will be fixing by creating more robust training data sets). 
 
