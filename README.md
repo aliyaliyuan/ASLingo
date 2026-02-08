@@ -16,6 +16,14 @@ Log-in page:
 
 ![loginpage](https://github.com/user-attachments/assets/d1108fad-0c09-4990-8440-daac25565dfc)
 
+Menu:
+
+![menu](https://github.com/user-attachments/assets/d91cb6ba-575f-4b7e-861e-5647b1d9cdce)
+
+Flashcards: 
+
+![flashcards](https://github.com/user-attachments/assets/1f23abef-4230-49f3-95e5-75d998ba6397)
+
 Live Capture Letter Detection Page: 
 
 ![predictpage](https://github.com/user-attachments/assets/20bfeea2-54cd-49ea-8002-d1e5f3023cfa)
@@ -46,5 +54,7 @@ This depicts the 21 landmarkers from MediaPipe that help to recognize hand gestu
 
 ## Future Direction
 I will be creating a robust training data set with 100 images per classification. I will also be expanding the model to train on all letters of the ASL alphabet. Then, I will move on to basic words. Then, I will need help from fluent ASL speakers/the Deaf community. 
+
+I will also eventually add users. 
 
 I will be modifying the scripts so that the Python script is the back-end and a React script will be used for the front end. The front-end will consist of a window that includes the live camera and a box that shows the letter (and eventually word/translated sentence) being identified. 
