@@ -42,7 +42,9 @@ The flashcard section is the first feature to be developed. Once users are set u
 ## How To Train the Model
 First, run Train_mp_ALX.py. This will create a landmarks.csv, which extract features from the images in your training data. These features are then used to generate the predictive model. You will need to save the model. 
 
-Then, you will edit the livecapture.py script to point to the file path location of your model and run the script. Your camera will pop up and text that reads "Letter: " will appear and predict the letter you are trying to sign. Right now, the accuracy is quite poor due to overfitting of the model I discussed earlier. It seems the model did really well at learning "L", but often confuses "A" and "X". 
+Then, you will edit the livecapture.py script to point to the file path location of your model and run the script. Your camera will pop up and text that reads "Letter: " will appear and predict the letter you are trying to sign. 
+
+The "A" and "L" are predicted very well, but "X" only works on your left hand and if your hand is to the side. I will need to train on more data to prevent overfitting. Also to expand it to the rest of the alphabet (and eventually words and phrases). 
 
 ## How to Run the GUI
 
