@@ -23,12 +23,11 @@ Menu:
 
 Flashcards: 
 
-![flashcards](https://github.com/user-attachments/assets/1f23abef-4230-49f3-95e5-75d998ba6397)
+![ASLingo_flashcardfeature](https://github.com/user-attachments/assets/4d709e8b-ba1c-478e-ab7c-b7b33cfcbaba)
 
 Live Capture Letter Detection Page: 
 
 ![predictpage](https://github.com/user-attachments/assets/20bfeea2-54cd-49ea-8002-d1e5f3023cfa)
-
 
 
 I started with 3 letters (A, L, and X). For simplicity, I used a Random Forest Classifier on the three letters using images of me signing the letters and stock images of the letters. There are only about 20-30 images per letter, so overfitting is definitely occuring (which I will be fixing by creating more robust training data sets). 
@@ -44,7 +43,7 @@ First, run Train_mp_ALX.py. This will create a landmarks.csv, which extract feat
 
 Then, you will edit the livecapture.py script to point to the file path location of your model and run the script. Your camera will pop up and text that reads "Letter: " will appear and predict the letter you are trying to sign. 
 
-The "A" and "L" are predicted very well, but "X" only works on your left hand and if your hand is to the side. I will need to train on more data to prevent overfitting. Also to expand it to the rest of the alphabet (and eventually words and phrases). 
+The "L" is correctly identified all of the time, "A" is correctly identified around 60% of the time, but "X" only works on your left hand and if your hand is to the side. I will need to train on more data to prevent overfitting. Also to expand it to the rest of the alphabet (and eventually words and phrases). 
 
 ## How to Run the GUI
 
