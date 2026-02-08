@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> Flashcards</title>
+
+<style>
+body {
+    font-family: sans-serif;
+    background: #fdc1d5;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.flashcard-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 50px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.flashcard {
+    width: 100%;
+    height: 150px;
+    background: #0097b2;
+    border-radius: 25px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    color: white;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+#videoElement {
+    width: 400px;
+    height: 300px;
+    border-radius: 15px;
+    border: 3px solid #034A57;
+    margin: 20px 0;
+    transform: scaleX(-1);
+}
+
+#prediction {
+    font-size: 1.3em;
+    color: #034A57;
+    margin: 15px 0;
+}
+
+.feedback {
+    padding: 15px;
+    margin: 15 px 0;
+    border-radius: 10px; 
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.feedback.correct {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.feedback.incorrect {
+    background-color: red;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    margin: 10px; 
+    background-color: #034A57;
+    padding: 12px 25px;
+    border-radius: 45px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: black;
+}
+</style>
+
+</head>
+
+<body> 
+    <div class="flashcard-container">
+
+        <h1> ASLingo </h1>
+
+        <div class="flashcard">
+            <p> Sign: <span id="question">A</span></p>
+        </div>
+
+        <video autoplay="true" id="videoElement"></video>
+        <p id="prediction"> Please Sign A</p>
+
+        <div id="feedback" class="feedback hidden"></div>
+
+        <button id="next-card">Next Card</button>
+    </div>
+
+<script> 
+const flashcards = [
+    {letter: "A"},
+    {letter: "L"},
+    {letter: "X"},
+];
+
+let currentCard = 0;
+const questionElement = document.getElementById('question');
+const predictionElement = document.getElementById('prediction');
+const feedbackElement = document.getElementById('feedback');
+const video = document.querySelector('#videoElement');
+
+//Start webcam
+if (navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({video: true})
+        .then(function(stream) {
+            video.srcObject = stream;
+        })
+        .catch(function(error) {
+            console.log("Webcam error: ", error);
+        });
+}
+
+function displayCard() {
+    questionElement.textContent = flashcards[currentCard].letter;
+    feedbackElement.classList.add('hidden');
+    predictionElement.textContent = 'Please sign the letter';
+}
+
+//capture and predict
+function captureAndPredict() {
+    const canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video,0,0);
+
+    canvas.toBlob(function(blob) {
+        const formData = new FormData();
+        formData.append('image',blob);
+
+        fetch('/predict', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            const predictedLetter = data.letter;
+            predictionElement.textContent = 'Current sign: ${predictedLetter}';
+
+            //checking if correct sign
+            if (predictedLetter === flashcards[currentCard].letter) {
+                feedbackElement.textContent = 'Correct!';
+                feedbackElement.className = 'feedback correct';
+                feedbackElement.classList.remove('hidden');
+            } else if (predictedLetter !== 'none') {
+                feedbackElement.textContent = 'Incorrect, That is ${predictedLetter}, not ${flashcards[currentCard].letter}';
+                feedbackElement.className = 'feedback incorrect';
+                feedbackElement.classList.remove('hidden');
+            }
+        })
+        .catch(error => console.error('Error :', error));
+    }, 'image/jpeg');
+}
+
+//check sign every 1.5 sec
+video.addEventListener('loadedmetadata', function() {
+    setInterval(captureAndPredict, 1500);
+});
+
+//Next card button
+document.getElementById('next-card').addEventListener('click', () => {
+    currentCard = (currentCard + 1) % flashcards.length;
+    displayCard();
+});
+
+displayCard();
+
+</script> 
+</body>
+
+</html>
