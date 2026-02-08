@@ -3,8 +3,9 @@
 
 
 ASL is the third most taught language in the US, however, many people from the hearing community do not know any ASL. ASLingo is a ML model for ASL education that I am developinging using Google's MediaPipe 
-ML model. I am not fluent in ASL, but wanted to make a tool that makes ASL education more accessible (and I'm learning ASL as I go).  The ultimate goal is to have a model that can translate ASL based on live-video capture and 
-can identify if the user is signing correctly or not. The feedback will give users more confidence and increase their chances of communicating with people actually fluent in ASL. 
+ML model. I am not fluent in ASL, but wanted to make a tool that makes ASL education more accessible (and I'm learning ASL as I go). I am developing a model that can translate ASL based on live-video capture and 
+can identify if the user is signing correctly or not. This tool is not meant to replace instructors or interpretors or interactions with real people, but rather to instill confidence and provide ample opportunities to practice. 
+With confidence, users will be more likely to interact with other ASL speakers. 
 
 For the purposes of this prototype, I want the model to be able to translate and give feedback on a user's ability to sign the alphabet,
 100 common words in ASL, and 10 basic phrases. I recognize that ASL has more complex elements (facial expression, grammar, etc.), but I want to start simple. 
@@ -36,6 +37,8 @@ Training files can be found at https://drive.google.com/drive/folders/1xhWV4fKXK
 
 A basic GUI that captures the live video feed from your device and displays the letter being recognized (A, L, X, or None). hello.py is the back-end python script that imports flask and the trained model to create end points for the HTML file to connect with. front_end.html captures the live video, sends frames to hello.py, which uses the model to make the predictions, then sends the information back. This is the simplest GUI it will be. Eventually, I want to incorporate users, lessons, and games. 
 
+The flashcard section is the first feature to be developed. Once users are set up, I will have a word/phrase/grammar bank that tracks what the user has learned so far as well as mistakes. This will inform what the user will be given in future lessons and games. 
+
 ## How To Train the Model
 First, run Train_mp_ALX.py. This will create a landmarks.csv, which extract features from the images in your training data. These features are then used to generate the predictive model. You will need to save the model. 
 
@@ -43,7 +46,7 @@ Then, you will edit the livecapture.py script to point to the file path location
 
 ## How to Run the GUI
 
-Go to the directory that hello.py is located in. Run: "flask --app hello run" in the Terminal. For this to work, the front_end.html is located in the /templates directory, and the logo is in the /static direcotry. Both /static and /templates must be in the same directory as hello.py. 
+Go to the directory that main.py is located in. Run: "flask --app main run" in the Terminal. For this to work, the front_end.html is located in the /templates directory, and the logo is in the /static direcotry. Both /static and /templates must be in the same directory as main.py. 
 
 Stay tuned for updates!
 
@@ -56,5 +59,3 @@ This depicts the 21 landmarkers from MediaPipe that help to recognize hand gestu
 I will be creating a robust training data set with 100 images per classification. I will also be expanding the model to train on all letters of the ASL alphabet. Then, I will move on to basic words. Then, I will need help from fluent ASL speakers/the Deaf community. 
 
 I will also eventually add users. 
-
-I will be modifying the scripts so that the Python script is the back-end and a React script will be used for the front end. The front-end will consist of a window that includes the live camera and a box that shows the letter (and eventually word/translated sentence) being identified. 
