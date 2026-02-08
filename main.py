@@ -11,27 +11,26 @@ import mediapipe as mp
 import joblib
 
 #load model
-clf = joblib.load('/path/to/ALX_model_local.joblib')
+clf = joblib.load('/Users/aliyahaas/Desktop/VS_Code/ASLingo/ALX_model_local.joblib')
 
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(static_image_mode=True, max_num_hands=1)
 
-#Run with the line: flask --app hello run
+#Run with the line: flask --app main run
 app = Flask(__name__)
 
-#login page
 @app.route('/')
 def login():
     return render_template('login.html')
 
-#User page with live camera capture
+#Camera
 @app.route('/app')
 def app_page():
     return render_template('front_end.html')
 
-@app.route('/hello')
-def hello():
-    return 'Hello, World'
+@app.route('/menu')
+def menu():
+    return render_template('menu.html')
 
 #Returns prediction
 @app.route('/predict', methods=['POST'])
@@ -62,5 +61,8 @@ def predict():
     else:
         return jsonify({'letter': 'none'})
 
+@app.route('/flashcards')
+def flashcards():
+    return render_template('flashcards.html')
 
-    return send_file('/Users/aliyahaas/Desktop/VS_Code/ASLingo/static/image.jpg', mimetype='image/jpeg')
+
