@@ -29,7 +29,11 @@ Live Capture Letter Detection Page:
 
 ![predictpage](https://github.com/user-attachments/assets/20bfeea2-54cd-49ea-8002-d1e5f3023cfa)
 
+Game:
 
+https://github.com/user-attachments/assets/4411e29c-dd76-4ee8-8b5f-da5a39fe176b
+
+## The Prediction Model
 I started with 3 letters (A, L, and X). For simplicity, I used a Random Forest Classifier on the three letters using images of me signing the letters and stock images of the letters. There are only about 20-30 images per letter, so overfitting is definitely occuring (which I will be fixing by creating more robust training data sets). 
 
 Training files can be found at https://drive.google.com/drive/folders/1xhWV4fKXKLFgCnSbBuy9rk7h4h2a4FyP?usp=drive_link 
@@ -58,5 +62,7 @@ This depicts the 21 landmarkers from MediaPipe that help to recognize hand gestu
 
 ## Future Direction
 I will be creating a robust training data set with 100 images per classification. I will also be expanding the model to train on all letters of the ASL alphabet. Then, I will move on to basic words. Then, I will need help from fluent ASL speakers/the Deaf community. 
+
+For the game, I want it to be a mini grocery shopping game. The user will be given a list (i.e. apple, carrot, and cake). The user (the circle on the screen) will navigate to the sections of the grocery store (will be just plain rectangles in the early prototype) and once the user clicks on the section, a screen will pop up with options. For instance, at the fruit station, the user will be shown four images -- an apple, an orange, a banana, and a strawberry. Another window also pops up (the live detection video that can predict the letter being signed). The user must sign the option they want. If they sign it correctly, it is added to their basket. The round is won when all three of the items are correctly signed (and thus added to the basket). 
 
 I will also eventually add users. 
