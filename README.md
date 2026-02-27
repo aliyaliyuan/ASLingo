@@ -32,6 +32,7 @@ Live Capture Letter Detection Page:
 Game:
 
 https://github.com/user-attachments/assets/4411e29c-dd76-4ee8-8b5f-da5a39fe176b
+Controls: up, down, left, right arrows
 
 ## The Prediction Model
 I started with 3 letters (A, L, and X). For simplicity, I used a Random Forest Classifier on the three letters using images of me signing the letters and stock images of the letters. There are only about 20-30 images per letter, so overfitting is definitely occuring (which I will be fixing by creating more robust training data sets). 
