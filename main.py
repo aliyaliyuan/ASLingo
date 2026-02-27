@@ -65,4 +65,8 @@ def predict():
 def flashcards():
     return render_template('flashcards.html')
 
+@app.route('/game')
+def game():
+    return render_template('game.html')
+
 
