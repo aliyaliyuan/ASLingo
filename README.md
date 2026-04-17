@@ -32,7 +32,11 @@ Live Capture Letter Detection Page:
 
 Game:
 
-https://github.com/user-attachments/assets/4411e29c-dd76-4ee8-8b5f-da5a39fe176b
+
+https://github.com/user-attachments/assets/6eeea9cc-ca17-4054-907b-359066898ca7
+
+Will incorporate the ASL detection model eventually. User will have a shopping list and will gather the correct items by signing the words correctly and then checkout. 
+
 Controls: up, down, left, right arrows
 
 ## The Prediction Model
