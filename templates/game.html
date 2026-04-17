@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Game Board</title>  
+    <title>Game Board</title>
 </head>
 <style>
- body {
-     font-family: sans-serif;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     min-height: 100vh;
-     margin: 0;
-     background: black;
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: #1a1a2e;
 }
 
 #gameWrapper {
@@ -37,89 +37,70 @@
 }
 
 #agent {
-    position: absolute; 
-    width: 36px; 
-    height: 36px; 
-    background: radial-gradient(circle at 35% 35%, ##ff6b9d, #c0215a);
-    border-radius: 50%;
-    box-shadow: 0 0 12px rgba(255, 107, 157, 0.8), 0 2px 6px rgba(0,0,0,0.4);
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    background: url("{{ url_for('static', filename='agent.png') }}") center/cover no-repeat;
     pointer-events: none;
     transform: translate(-50%, -50%);
-    transition: box-shadow 0.1s ease;
     z-index: 10;
 }
-
-#agent.moving {
-    box-shadow: 0 0 20px rgba(255, 107, 157, 1), 0 2px 8px rgba(0,0,0,0.5);
+#fruit {
+    background: url("{{ url_for('static', filename='fruit.jpg') }}") center/cover no-repeat;
+    position: absolute;
+    top: 2px;   
+    left: 80px;  
+    width: 150px;
+    height: 50px;
 }
+
+#vegtable {
+    background: url("{{ url_for('static', filename='veg.png') }}") center/cover no-repeat;
+    position: absolute;
+    top: 160px;
+    left: 2px;
+    width: 50px;
+    height: 150px;
+}
+
+#dessert {
+    background: url("{{ url_for('static', filename='dessert.png') }}") center/cover no-repeat;
+    position: absolute;
+    top: 2px;   
+    left: 300px;  
+    width: 150px;
+    height: 50px;
+}
+
+#cashier {
+    background: url("{{ url_for('static', filename='cashier.png') }}") center/cover no-repeat;
+    position: absolute;
+    top: 250px;   
+    left: 332px;  
+    width: 150px;
+    height: 50px;
+    color: white;
+}
+
 </style>
 <body>
-  <div id="gameWrapper">
-      <div id="board"></div>
-      <div id="agent"></div>
-  </div>
+    <div id="gameWrapper">
+        <div id="board"></div>
+        <div id="fruit">
+        </div>
 
-  <script>
-      const CELL_SIZE = 60;
-      const COLS = 8;
-      const ROWS = 8;
-      const BOARD_W = COLS * CELL_SIZE;
-      const BOARD_H = ROWS * CELL_SIZE;
-      const SPEED = 3;  //pixels per frame
-      const AGENT_RADIUS = 18;
-
-      //build the board
-      const board = document.getElementbyId("board");
-      for (let i = 1; i <= ROWS; i++) {
-        const row = document.createElement("div");
-        row.className = "cellContainer";
-        for (let j = 1; j <= COLS; j++) {
-            const cell = document.createElement("div");
-            cell.className = "cell";
-            const isPink = (i + j) % 2 == 0;
-            cell.style.backgroundColor = isPink ? "#fdc1d6" : "white";
-            row.appendChild(cell);
-        }
-        board.appendChild(row);
-}
-
-//agent state
-      const agent = document.getElementById("agent");
-      let x = BOARD_W/2;
-      let y = BOARD_H/2;
-      const keys = {};
-  
-      document.addEventListener("keydown", e => {
-          keys[e.key] = true;
-          e.preventDefault();
-      });
-      document.addEventListener("keyup", e => {
-        keys[e.key] = false;
-      });
-      function updateAgent() {
-        let moving = false;
-
-        if (keys["ArrowUp"])    {y -= SPEED; moving = true; }
-        if (keys["ArrowDown"])  {y += SPEED; moving = true; }
-        if (keys["ArrowLeft"])  { x -= SPEED; moving = true; }
-        if (keys["ArrowRight"]) (x += SPEED; moving =true; }
-
-        //clamp to board boundaries 
-        x = Math.max(AGENT_RADIUS, Math.min(BOARD_W - AGENT_RADIUS, x));
-        y = Math.max(AGENT_RADIUS, Math.min(BOARD_H - AGENT_RADIUS, y)); 
-
-        agent.style.left = x + "px";
-        agent.style.right = y + "px";
-        agent.classList.toggle("moving", moving);
-
-        requestAnimationFrame(updateAgent);
-    }
-
-    // initial agent position
-    agent.style.left = x + "px";
-    agent.style.top = y + "px";
-
-    requestAnimationFrame(updateAgent); 
-  </script>  
+        <div id="vegtable">
+        </div>
+            
+        <div id="dessert">
+        </div>
+            
+        <div id="cashier">
+        </div>
+            
+        <div id="agent"></div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
 </html>
