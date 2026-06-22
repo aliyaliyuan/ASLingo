@@ -3,8 +3,8 @@
 
 
 ASL is the third most taught language in the US, however, many people from the hearing community do not know any ASL. ASLingo is a ML model for ASL education that I am developinging using Google's MediaPipe 
-ML model. I am not fluent in ASL, but wanted to make a tool that makes ASL education more accessible (and I'm learning ASL as I go). I am developing a model that can translate ASL based on live-video capture and 
-can identify if the user is signing correctly or not. This tool is not meant to replace instructors or interpretors or interactions with real people, but rather to instill confidence and provide ample opportunities to practice. 
+ML model. I am not fluent in ASL, but wanted to make a tool to build the confidence of ASL learners(and I'm learning ASL as I go). I am developing a model that can translate ASL based on live-video capture and 
+can identify if the user is signing correctly or not. This tool is not meant to replace instructors or interpretors or interactions with real people, but rather to provide ample opportunities to practice vocabulary. 
 With confidence, users will be more likely to interact with other ASL speakers. I believe live video capture will make this tool most effective for learners
 because ASL is such a visual language, requiring your hands and facial expressions. 
 
