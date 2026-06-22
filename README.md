@@ -11,7 +11,7 @@ because ASL is such a visual language, requiring your hands and facial expressio
 For the purposes of this prototype, I want the model to be able to translate and give feedback on a user's ability to sign the alphabet,
 100 common words in ASL, and 10 basic phrases. I recognize that ASL has more complex elements (facial expression, grammar, etc.), but I want to start simple. 
 
-To start with, I am training the model on data I create (images of the ASL alphabet from Stock photos and myself) and simple word banks from Kaggle. Eventually, I want to train the model on a robust data set obtained of signs from fluent ASL speakers from the Deaf community for authenticity. 
+To start with, I am training the model on data I create (images of the ASL alphabet from Stock photos and myself) and simple word banks from Kaggle. Eventually, I want to train the model on a robust data set obtained of signs from fluent ASL speakers from the Deaf community for authenticity (if given consent from community members). 
 
 ## Current Progress
 Log-in page: 
