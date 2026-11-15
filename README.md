@@ -57,7 +57,25 @@ The "L" is correctly identified all of the time, "A" is correctly identified aro
 
 ## How to Run the GUI
 
-Go to the directory that main.py is located in. Run: "flask --app main run" in the Terminal. For this to work, the front_end.html is located in the /templates directory, and the logo is in the /static direcotry. Both /static and /templates must be in the same directory as main.py. 
+The app is a React front end (`frontend/`) talking to a Flask back end (`main.py`).
+
+One-time setup:
+
+```
+pip install -r requirements.txt
+cd frontend && npm install
+```
+
+For development, run these in two terminals and open http://localhost:5173 :
+
+```
+flask --app main run --port 5001
+cd frontend && npm run dev
+```
+
+(Port 5001 because macOS uses port 5000 for AirPlay.)
+
+To run everything from Flask alone, build the front end once with `cd frontend && npm run build`, start Flask as above, and open http://localhost:5001 .
 
 Stay tuned for updates!
 

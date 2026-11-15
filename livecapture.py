@@ -2,9 +2,10 @@ import mediapipe as mp
 import numpy as np
 import cv2
 import joblib
+from pathlib import Path
 
 # Load model
-clf = joblib.load('/Users/aliyahaas/Desktop/VS_Code/ASLingo/ALX_model_local.joblib')
+clf = joblib.load(Path(__file__).resolve().parent / 'ALX_model_local.joblib')
 
 # MediaPipe setup
 mp_drawing = mp.solutions.drawing_utils
