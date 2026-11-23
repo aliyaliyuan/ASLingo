@@ -1,12 +1,9 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-// In dev, API calls are forwarded to the Flask backend (see ../main.py).
+// Relative asset paths, so the same build works at the site root (Flask)
+// and under /ASLingo/ on GitHub Pages.
 export default defineConfig({
+  base: './',
   plugins: [react()],
-  server: {
-    proxy: {
-      '/predict': 'http://127.0.0.1:5001',
-    },
-  },
 })

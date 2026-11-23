@@ -9,7 +9,7 @@ const FLASHCARDS = ['A', 'L', 'X']
 export default function Flashcards() {
   const [index, setIndex] = useState(0)
   const camera = useHandCamera()
-  const { prediction, error } = usePrediction(camera.landmarksRef, 500)
+  const { prediction } = usePrediction(camera.landmarksRef, 500)
 
   const target = FLASHCARDS[index]
   const sawHand = prediction && prediction.toLowerCase() !== 'none'
@@ -32,7 +32,6 @@ export default function Flashcards() {
             {correct ? 'Correct!' : `Incorrect, that is ${prediction}, not ${target}`}
           </div>
         )}
-        {error && <p className="error-text">{error}</p>}
 
         <button onClick={() => setIndex((index + 1) % FLASHCARDS.length)}>Next Card</button>
         <Link className="back-link" to="/menu">← Menu</Link>

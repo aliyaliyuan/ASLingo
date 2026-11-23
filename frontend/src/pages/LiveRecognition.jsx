@@ -5,7 +5,7 @@ import { usePrediction } from '../hooks/usePrediction.js'
 
 export default function LiveRecognition() {
   const camera = useHandCamera()
-  const { prediction, error } = usePrediction(camera.landmarksRef, 500)
+  const { prediction } = usePrediction(camera.landmarksRef, 500)
 
   return (
     <main className="page centered">
@@ -13,7 +13,6 @@ export default function LiveRecognition() {
         <h1>Live Recognition</h1>
         <p className="prediction">Letter: {prediction ?? '…'}</p>
         <CameraView camera={camera} />
-        {error && <p className="error-text">{error}</p>}
         <Link className="back-link" to="/menu">← Menu</Link>
       </div>
     </main>

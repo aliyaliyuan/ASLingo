@@ -57,25 +57,26 @@ The "L" is correctly identified all of the time, "A" is correctly identified aro
 
 ## How to Run the GUI
 
-The app is a React front end (`frontend/`) talking to a Flask back end (`main.py`).
-
-One-time setup:
+The app is a React front end in `frontend/`. Everything runs in the browser: MediaPipe tracks the hand, and the trained model is exported to JSON and run in JavaScript, so no server is needed.
 
 ```
-pip install -r requirements.txt
-cd frontend && npm install
+cd frontend
+npm install        # first time only
+npm run dev
 ```
 
-For development, run these in two terminals and open http://localhost:5173 :
+Then open http://localhost:5173 .
+
+**Live site:** pushing to `main` builds and publishes the app to GitHub Pages (https://aliyaliyuan.github.io/ASLingo/) via `.github/workflows/deploy-pages.yml`. One-time setup: in the repo's Settings → Pages, set Source to "GitHub Actions".
+
+**After retraining the model**, export it for the browser:
 
 ```
-flask --app main run --port 5001
-cd frontend && npm run dev
+python training/alx_train.py      # writes ALX_model_local.joblib
+python training/export_model.py   # writes frontend/src/model/model.json
 ```
 
-(Port 5001 because macOS uses port 5000 for AirPlay.)
-
-To run everything from Flask alone, build the front end once with `cd frontend && npm run build`, start Flask as above, and open http://localhost:5001 .
+`main.py` (Flask) is optional: it serves a built copy of the app (`npm run build` first) and keeps a `/predict` API for Python tools. Run it with `flask --app main run --port 5001` in the `aslingo` conda environment.
 
 Stay tuned for updates!
 

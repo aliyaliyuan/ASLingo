@@ -9,7 +9,7 @@ function loadLandmarker() {
   landmarkerPromise ??= HandLandmarker.createFromOptions(
     { wasmLoaderPath, wasmBinaryPath },
     {
-      baseOptions: { modelAssetPath: '/hand_landmarker.task' },
+      baseOptions: { modelAssetPath: `${import.meta.env.BASE_URL}hand_landmarker.task` },
       runningMode: 'VIDEO',
       numHands: 1,
     },
