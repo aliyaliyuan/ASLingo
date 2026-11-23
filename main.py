@@ -19,7 +19,7 @@ clf = joblib.load(BASE_DIR / 'ALX_model_local.joblib')
 # MediaPipe hand landmarker (Tasks API; the old mp.solutions API is gone in new versions)
 hands = mp.tasks.vision.HandLandmarker.create_from_options(
     mp.tasks.vision.HandLandmarkerOptions(
-        base_options=mp.tasks.BaseOptions(model_asset_path=str(BASE_DIR / 'hand_landmarker.task')),
+        base_options=mp.tasks.BaseOptions(model_asset_path=str(BASE_DIR / 'frontend' / 'public' / 'hand_landmarker.task')),
         num_hands=1,
     )
 )
@@ -27,9 +27,17 @@ hands = mp.tasks.vision.HandLandmarker.create_from_options(
 app = Flask(__name__, static_folder=None)
 
 
-# Returns prediction
+# Returns prediction.
+# Accepts either JSON {"landmarks": [63 numbers]} (hand already tracked in the
+# browser) or an uploaded image, in which case the hand is found here.
 @app.route('/predict', methods=['POST'])
 def predict():
+    if request.is_json:
+        landmarks = request.get_json().get('landmarks') or []
+        if len(landmarks) != clf.n_features_in_:
+            return jsonify({'error': f'expected {clf.n_features_in_} landmark values'}), 400
+        return jsonify({'letter': clf.predict([landmarks])[0]})
+
     # Get image from request
     image_file = request.files['image']
 
@@ -45,9 +53,8 @@ def predict():
 
     if results.hand_landmarks:
         # Get first hand's landmarks
-        hand_landmarks = results.hand_landmarks[0]
         landmarks = []
-        for landmark in hand_landmarks:
+        for landmark in results.hand_landmarks[0]:
             landmarks.extend([landmark.x, landmark.y, landmark.z])
 
         # Predict

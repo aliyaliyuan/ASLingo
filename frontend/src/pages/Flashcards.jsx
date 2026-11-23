@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import CameraView from '../components/CameraView.jsx'
-import { useCamera } from '../hooks/useCamera.js'
+import { useHandCamera } from '../hooks/useHandCamera.js'
 import { usePrediction } from '../hooks/usePrediction.js'
 
 const FLASHCARDS = ['A', 'L', 'X']
 
 export default function Flashcards() {
   const [index, setIndex] = useState(0)
-  const { videoRef, error: cameraError } = useCamera()
-  const { prediction, error } = usePrediction(videoRef, 1500)
+  const camera = useHandCamera()
+  const { prediction, error } = usePrediction(camera.landmarksRef, 500)
 
   const target = FLASHCARDS[index]
   const sawHand = prediction && prediction.toLowerCase() !== 'none'
@@ -21,7 +21,7 @@ export default function Flashcards() {
         <h1>ASLingo</h1>
         <div className="flashcard">Sign: {target}</div>
 
-        <CameraView videoRef={videoRef} error={cameraError} />
+        <CameraView camera={camera} />
 
         <p className="prediction">
           {sawHand ? `Current sign: ${prediction}` : 'Please sign the letter'}
@@ -32,7 +32,7 @@ export default function Flashcards() {
             {correct ? 'Correct!' : `Incorrect, that is ${prediction}, not ${target}`}
           </div>
         )}
-        {error && <p className="camera-error">{error}</p>}
+        {error && <p className="error-text">{error}</p>}
 
         <button onClick={() => setIndex((index + 1) % FLASHCARDS.length)}>Next Card</button>
         <Link className="back-link" to="/menu">← Menu</Link>

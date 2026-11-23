@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Modal from '../components/Modal.jsx'
+import SignPrompt from '../components/SignPrompt.jsx'
+import { makeShoppingList } from '../game/items.js'
 import hedgehog from '../assets/hedgehog.png'
 import fruitImg from '../assets/fruit.jpg'
 import vegImg from '../assets/veg.png'
@@ -47,6 +49,12 @@ export default function Game() {
   // steps away from it, otherwise the prompt would pop straight back up.
   const dismissedZoneRef = useRef(null)
   const [openZone, setOpenZone] = useState(null)
+  const [shoppingList, setShoppingList] = useState(makeShoppingList)
+  const [cart, setCart] = useState([]) // ids of collected items
+
+  const remaining = shoppingList.filter((item) => !cart.includes(item.id))
+  // The item to sign for in the open section, if the list has one there.
+  const wanted = openZone && remaining.find((item) => item.section === openZone.id)
 
   useEffect(() => {
     const down = (e) => {
@@ -106,8 +114,20 @@ export default function Game() {
     setOpenZone(null)
   }, [])
 
+  const collect = (item) => {
+    setCart((c) => [...c, item.id])
+    closePrompt()
+  }
+
+  const newGame = () => {
+    setShoppingList(makeShoppingList())
+    setCart([])
+    closePrompt()
+  }
+
   return (
     <main className="page centered game-page">
+      <div className="game-layout">
       <div className="game-wrapper" style={{ width: BOARD_W, height: BOARD_H }}>
         <div className="board" style={{ gridTemplateColumns: `repeat(${COLS}, ${CELL_SIZE}px)` }}>
           {Array.from({ length: ROWS * COLS }, (_, i) => {
@@ -138,15 +158,59 @@ export default function Game() {
         />
       </div>
 
+        <aside className="shopping-list">
+          <h2>Shopping list</h2>
+          <ul>
+            {shoppingList.map((item) => {
+              const done = cart.includes(item.id)
+              return (
+                <li key={item.id} className={done ? 'done' : ''}>
+                  <span className="check">{done ? '✓' : ''}</span>
+                  {item.icon} {item.word}
+                </li>
+              )
+            })}
+          </ul>
+          <p className="cart-count">
+            In cart: {cart.length} / {shoppingList.length}
+          </p>
+          <p className="list-tip">
+            {remaining.length ? 'Walk to a section to pick up an item.' : 'Everything collected. Go to the cashier!'}
+          </p>
+        </aside>
+      </div>
+
       <p className="game-hint">
         Move with the arrow keys · <Link to="/menu">Menu</Link>
       </p>
 
-      {openZone && (
-        <Modal title={`You entered: ${openZone.label}`} onClose={closePrompt}>
-          <img className="modal-image" src={openZone.img} alt={openZone.label} />
-          {/* Next step: replace this with the sign prompt (camera + target sign). */}
-          <button autoFocus onClick={closePrompt}>Close</button>
+      {openZone && openZone.id === 'cashier' && (
+        <Modal title="Cashier" onClose={closePrompt}>
+          {remaining.length ? (
+            <>
+              <p>You still need: {remaining.map((item) => `${item.icon} ${item.word}`).join(', ')}</p>
+              <button autoFocus onClick={closePrompt}>Keep shopping</button>
+            </>
+          ) : (
+            <>
+              <p className="win">🎉 You got everything on your list!</p>
+              <button autoFocus onClick={newGame}>Play again</button>
+            </>
+          )}
+        </Modal>
+      )}
+
+      {openZone && openZone.id !== 'cashier' && (
+        <Modal title={`${openZone.label} section`} onClose={closePrompt}>
+          {wanted ? (
+            <SignPrompt item={wanted} onSuccess={() => collect(wanted)} onCancel={closePrompt} />
+          ) : (
+            <>
+              <img className="modal-image" src={openZone.img} alt="" />
+              <p>Nothing left on your list from this section.</p>
+              <button autoFocus onClick={closePrompt}>Close</button>
+            </>
+          )}
         </Modal>
       )}
     </main>
