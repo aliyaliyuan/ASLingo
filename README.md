@@ -1,3 +1,4 @@
+Access the web version: https://aliyaliyuan.github.io/ASLingo
 
 ![logo](https://github.com/user-attachments/assets/85b3dc07-c039-405c-9dda-17481a657ed5)
 
